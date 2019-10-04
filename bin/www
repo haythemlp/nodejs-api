@@ -7,17 +7,16 @@
 var app = require('../app');
 var debug = require('debug')('mean:server');
 var http = require('http');
-var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/mean",
-    {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(() => console.log('BD connected'))
-    .catch(() => console.error('erro'));
-
+require ('custom-env').env();
+console.log(process.env.APP_ENV);
+console.log(process.env.APP_NAME);
+console.log(process.env.DB_HOST);
+console.log(process.env.DB_PASS);
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.APP_PORT || '3000');
 app.set('port', port);
 
 /**
